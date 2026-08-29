@@ -1,0 +1,149 @@
+   Compiling dom-boundary-bench v0.1.0 (<artifact>/bench)
+    Finished `bench` profile [optimized + debuginfo] target(s) in 1.10s
+     Running benches/boundary.rs (target/release/deps/boundary-8dfa125a2b738f53)
+Gnuplot not found, using plotters backend
+Benchmarking ladder/A-in-engine-js/v8-short-many-real
+Benchmarking ladder/A-in-engine-js/v8-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/A-in-engine-js/v8-short-many-real: Collecting 60 samples in estimated 7.8396 s (180 iterations)
+Benchmarking ladder/A-in-engine-js/v8-short-many-real: Analyzing
+ladder/A-in-engine-js/v8-short-many-real
+                        time:   [7.1165 ms 7.1331 ms 7.1504 ms]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high mild
+Benchmarking ladder/C-native/v8-short-many-real
+Benchmarking ladder/C-native/v8-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/C-native/v8-short-many-real: Collecting 60 samples in estimated 7.8649 s (240 iterations)
+Benchmarking ladder/C-native/v8-short-many-real: Analyzing
+ladder/C-native/v8-short-many-real
+                        time:   [4.4647 ms 4.4848 ms 4.5059 ms]
+
+Benchmarking ladder/A-in-engine-js/v80-short-many-real
+Benchmarking ladder/A-in-engine-js/v80-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/A-in-engine-js/v80-short-many-real: Collecting 60 samples in estimated 8.0269 s (180 iterations)
+Benchmarking ladder/A-in-engine-js/v80-short-many-real: Analyzing
+ladder/A-in-engine-js/v80-short-many-real
+                        time:   [7.2003 ms 7.2392 ms 7.2802 ms]
+Benchmarking ladder/C-native/v80-short-many-real
+Benchmarking ladder/C-native/v80-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/C-native/v80-short-many-real: Collecting 60 samples in estimated 6.1061 s (180 iterations)
+Benchmarking ladder/C-native/v80-short-many-real: Analyzing
+ladder/C-native/v80-short-many-real
+                        time:   [6.2498 ms 6.2719 ms 6.3014 ms]
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) high mild
+  1 (1.67%) high severe
+
+Benchmarking ladder/A-in-engine-js/v150-short-many-real
+Benchmarking ladder/A-in-engine-js/v150-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/A-in-engine-js/v150-short-many-real: Collecting 60 samples in estimated 7.7834 s (180 iterations)
+Benchmarking ladder/A-in-engine-js/v150-short-many-real: Analyzing
+ladder/A-in-engine-js/v150-short-many-real
+                        time:   [7.2189 ms 7.2489 ms 7.2817 ms]
+Found 3 outliers among 60 measurements (5.00%)
+  3 (5.00%) high mild
+Benchmarking ladder/C-native/v150-short-many-real
+Benchmarking ladder/C-native/v150-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/C-native/v150-short-many-real: Collecting 60 samples in estimated 6.4255 s (180 iterations)
+Benchmarking ladder/C-native/v150-short-many-real: Analyzing
+ladder/C-native/v150-short-many-real
+                        time:   [7.1295 ms 7.1544 ms 7.1802 ms]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high mild
+
+Benchmarking ladder/A-in-engine-js/v300-short-many-real
+Benchmarking ladder/A-in-engine-js/v300-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/A-in-engine-js/v300-short-many-real: Collecting 60 samples in estimated 8.0729 s (180 iterations)
+Benchmarking ladder/A-in-engine-js/v300-short-many-real: Analyzing
+ladder/A-in-engine-js/v300-short-many-real
+                        time:   [7.2228 ms 7.2479 ms 7.2743 ms]
+Found 6 outliers among 60 measurements (10.00%)
+  1 (1.67%) low mild
+  5 (8.33%) high mild
+Benchmarking ladder/C-native/v300-short-many-real
+Benchmarking ladder/C-native/v300-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/C-native/v300-short-many-real: Collecting 60 samples in estimated 6.4782 s (180 iterations)
+Benchmarking ladder/C-native/v300-short-many-real: Analyzing
+ladder/C-native/v300-short-many-real
+                        time:   [7.9561 ms 7.9822 ms 8.0135 ms]
+Found 3 outliers among 60 measurements (5.00%)
+  1 (1.67%) high mild
+  2 (3.33%) high severe
+
+Benchmarking ladder/A-in-engine-js/v800-short-many-real
+Benchmarking ladder/A-in-engine-js/v800-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/A-in-engine-js/v800-short-many-real: Collecting 60 samples in estimated 8.0194 s (180 iterations)
+Benchmarking ladder/A-in-engine-js/v800-short-many-real: Analyzing
+ladder/A-in-engine-js/v800-short-many-real
+                        time:   [7.3905 ms 7.4584 ms 7.5321 ms]
+Found 8 outliers among 60 measurements (13.33%)
+  8 (13.33%) high mild
+Benchmarking ladder/C-native/v800-short-many-real
+Benchmarking ladder/C-native/v800-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/C-native/v800-short-many-real: Collecting 60 samples in estimated 6.7074 s (180 iterations)
+Benchmarking ladder/C-native/v800-short-many-real: Analyzing
+ladder/C-native/v800-short-many-real
+                        time:   [10.093 ms 10.120 ms 10.149 ms]
+Found 3 outliers among 60 measurements (5.00%)
+  3 (5.00%) high mild
+
+Benchmarking ladder/A-in-engine-js/vunique-short-many-real
+Benchmarking ladder/A-in-engine-js/vunique-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/A-in-engine-js/vunique-short-many-real: Collecting 60 samples in estimated 7.6892 s (180 iterations)
+Benchmarking ladder/A-in-engine-js/vunique-short-many-real: Analyzing
+ladder/A-in-engine-js/vunique-short-many-real
+                        time:   [7.1854 ms 7.2219 ms 7.2581 ms]
+Benchmarking ladder/C-native/vunique-short-many-real
+Benchmarking ladder/C-native/vunique-short-many-real: Warming up for 2.0000 s
+Benchmarking ladder/C-native/vunique-short-many-real: Collecting 60 samples in estimated 7.8040 s (180 iterations)
+Benchmarking ladder/C-native/vunique-short-many-real: Analyzing
+ladder/C-native/vunique-short-many-real
+                        time:   [13.396 ms 13.441 ms 13.491 ms]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high mild
+
+Benchmarking contrast/A-in-engine-js/v8-short-few-real
+Benchmarking contrast/A-in-engine-js/v8-short-few-real: Warming up for 2.0000 s
+Benchmarking contrast/A-in-engine-js/v8-short-few-real: Collecting 60 samples in estimated 7.6260 s (180 iterations)
+Benchmarking contrast/A-in-engine-js/v8-short-few-real: Analyzing
+contrast/A-in-engine-js/v8-short-few-real
+                        time:   [6.3352 ms 6.3527 ms 6.3708 ms]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high mild
+Benchmarking contrast/C-native/v8-short-few-real
+Benchmarking contrast/C-native/v8-short-few-real: Warming up for 2.0000 s
+Benchmarking contrast/C-native/v8-short-few-real: Collecting 60 samples in estimated 7.8319 s (240 iterations)
+Benchmarking contrast/C-native/v8-short-few-real: Analyzing
+contrast/C-native/v8-short-few-real
+                        time:   [4.2499 ms 4.2606 ms 4.2716 ms]
+
+Benchmarking contrast/A-in-engine-js/vunique-short-few-real
+Benchmarking contrast/A-in-engine-js/vunique-short-few-real: Warming up for 2.0000 s
+Benchmarking contrast/A-in-engine-js/vunique-short-few-real: Collecting 60 samples in estimated 7.7113 s (180 iterations)
+Benchmarking contrast/A-in-engine-js/vunique-short-few-real: Analyzing
+contrast/A-in-engine-js/vunique-short-few-real
+                        time:   [6.2709 ms 6.2926 ms 6.3165 ms]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high severe
+Benchmarking contrast/C-native/vunique-short-few-real
+Benchmarking contrast/C-native/vunique-short-few-real: Warming up for 2.0000 s
+Benchmarking contrast/C-native/vunique-short-few-real: Collecting 60 samples in estimated 7.7684 s (180 iterations)
+Benchmarking contrast/C-native/vunique-short-few-real: Analyzing
+contrast/C-native/vunique-short-few-real
+                        time:   [12.989 ms 13.015 ms 13.041 ms]
+
+Benchmarking contrast/A-in-engine-js/v8-long-many-real
+Benchmarking contrast/A-in-engine-js/v8-long-many-real: Warming up for 2.0000 s
+Benchmarking contrast/A-in-engine-js/v8-long-many-real: Collecting 60 samples in estimated 8.0555 s (180 iterations)
+Benchmarking contrast/A-in-engine-js/v8-long-many-real: Analyzing
+contrast/A-in-engine-js/v8-long-many-real
+                        time:   [7.6319 ms 7.6469 ms 7.6623 ms]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high mild
+Benchmarking contrast/C-native/v8-long-many-real
+Benchmarking contrast/C-native/v8-long-many-real: Warming up for 2.0000 s
+Benchmarking contrast/C-native/v8-long-many-real: Collecting 60 samples in estimated 6.0685 s (180 iterations)
+Benchmarking contrast/C-native/v8-long-many-real: Analyzing
+contrast/C-native/v8-long-many-real
+                        time:   [5.6044 ms 5.6212 ms 5.6386 ms]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high mild

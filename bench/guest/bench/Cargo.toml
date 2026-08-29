@@ -1,0 +1,29 @@
+[package]
+name = "dom-boundary-bench-guest"
+description = "Arm C's guest: the workload built through the blitz host imports"
+publish = false
+version = "0.1.0"
+license = "Apache-2.0"
+edition = "2024"
+rust-version = "1.89"
+
+[lib]
+name = "dom_boundary_bench_guest"
+# cdylib, not rlib. An rlib compile proves the code type-checks for wasm32; it
+# never links, so a missing panic handler or an unsatisfied import would show up
+# only when a real module is produced and instantiated.
+crate-type = ["cdylib"]
+
+[dependencies]
+# Pinned to the same revision the harness links, over git rather than a path.
+# This is a SEPARATE workspace, so `cargo check` in the harness never touches
+# it — the path dependency it used to carry pointed at a sibling checkout that
+# does not exist beside this repository, and the failure surfaced only when the
+# harness shelled out to build the guest, at benchmark time, after a green
+# check. Pinning it here keeps the guest and the host on one engine revision by
+# construction rather than by both happening to point at the same directory.
+blitz-wasm-guest = { git = "https://github.com/pathscale/ps-blitz.git", rev = "7e1f0bb096c19a24599b017c6bef0b18616c2d18" }
+# The same crate the harness links. This is what makes the arms comparable:
+# there is one definition of the workload and both sides compile it, rather
+# than two transcriptions that agree until someone edits one of them.
+workload = { path = "../../workload" }

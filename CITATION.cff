@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the associated VMIL 2026 paper."
+title: "Artifact for The Event Loop That Wasn't"
+type: software
+authors:
+  - family-names: "Bergström"
+    given-names: "C."
+    orcid: "https://orcid.org/0009-0008-7153-1817"
+repository-code: "https://github.com/pathscale/vmil26-artifact"
+license: Apache-2.0
+identifiers:
+  - type: doi
+    value: "10.1145/3840562.3844970"
+    description: "Associated VMIL 2026 paper"

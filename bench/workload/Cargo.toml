@@ -1,0 +1,13 @@
+[package]
+name = "workload"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+description = "The benchmark workload: word lists, seeded generator, row model"
+license = "Apache-2.0"
+publish = false
+
+# No dependencies, deliberately. This crate is linked into a
+# wasm32-unknown-unknown guest as well as the host harness, and anything it
+# pulled in would have to build for both.
+[dependencies]

@@ -1,0 +1,6 @@
+/target
+/guest/target
+
+# Output. Committing it would mean a diff on every run, and a timing from
+# someone else's machine sitting in the tree looking authoritative.
+/results.json

@@ -1,0 +1,23 @@
+# A SEPARATE workspace from the harness, for the two reasons `ps-blitz` records
+# next to its own guest workspace and which apply unchanged here:
+#
+# 1. Deadlock. The harness shells out to `cargo build` for this guest. If the
+#    guest shared the harness's target directory it would block forever on a
+#    lock the harness itself holds, and a deadlocked build looks like a hung
+#    machine rather than a failure.
+#
+# 2. Target triple. These crates only build for wasm32-unknown-unknown. Keeping
+#    them out of the harness's member list stops `cargo check --all-targets`
+#    from trying to produce a cdylib for the host triple.
+[workspace]
+resolver = "2"
+members = ["bench"]
+
+[profile.release]
+# Unwinding is unsupported on wasm32-unknown-unknown, so this is not a choice.
+# Stating it keeps the profile honest.
+panic = "abort"
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true

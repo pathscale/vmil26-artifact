@@ -1,0 +1,111 @@
+[workspace]
+members = [".", "workload"]
+# `guest` is a SEPARATE workspace. It only builds for wasm32-unknown-unknown, so
+# keeping it out of `members` stops `cargo check --all-targets` from trying to
+# produce a cdylib for the host triple, and its own target directory means the
+# harness can shell out to build it without contending on this workspace's lock.
+# Same shape as `ps-blitz/packages/blitz-wasm/guest`, where the pattern was
+# already proven.
+exclude = ["guest"]
+resolver = "2"
+
+[package]
+name = "dom-boundary-bench"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+description = "Measures the cost of the boundary between a guest language and a DOM"
+license = "Apache-2.0"
+publish = false
+
+# A library as well as a binary, so the tests can construct the arms rather than
+# re-implementing them to check them.
+[lib]
+name = "dom_boundary_bench"
+path = "src/lib.rs"
+
+[[bin]]
+name = "dom-boundary-bench"
+path = "src/main.rs"
+
+[dependencies]
+workload = { path = "workload" }
+
+# The engine under measurement, pinned to one commit rather than followed by
+# path. `blitz-dom-api` and `blitz-wasm` are `publish = false`, so there is no
+# released version to depend on — but a path dependency on a sibling checkout
+# makes the numbers depend on whatever that checkout happens to be, which for a
+# paper is the wrong contract. Pinned by revision, a clean clone of this
+# repository reproduces the engine the numbers were taken against, and
+# `machine.rs` records the resolved commit into every report as a cross-check.
+#
+# Bumping the pin is a deliberate act that shows up in the diff. It should be
+# accompanied by a fresh run, because the recorded commit and the reported
+# numbers are only meaningful together.
+#
+# The published packages in that fork carry a `ps-` prefix and are renamed back
+# here, so the code reads as `blitz_dom::` rather than `ps_blitz_dom::` and
+# matches every doc comment and every file in `ps-blitz` itself.
+blitz-dom = { package = "ps-blitz-dom", git = "https://github.com/pathscale/ps-blitz.git", rev = "7e1f0bb096c19a24599b017c6bef0b18616c2d18" }
+blitz-dom-api = { git = "https://github.com/pathscale/ps-blitz.git", rev = "7e1f0bb096c19a24599b017c6bef0b18616c2d18" }
+blitz-traits = { package = "ps-blitz-traits", git = "https://github.com/pathscale/ps-blitz.git", rev = "7e1f0bb096c19a24599b017c6bef0b18616c2d18" }
+blitz-wasm = { git = "https://github.com/pathscale/ps-blitz.git", rev = "7e1f0bb096c19a24599b017c6bef0b18616c2d18" }
+
+# `dom-stats` is what makes arm A countable: it is the existing per-binding
+# instrumentation, and its call counts are arm A's "DOM operations issued".
+# It is toggled at runtime per pass, so the timing pass does not pay for it.
+blitz-script = { package = "ps-blitz-script", git = "https://github.com/pathscale/ps-blitz.git", rev = "7e1f0bb096c19a24599b017c6bef0b18616c2d18", features = [
+    "dom-stats",
+] }
+
+# Must match the version `blitz-wasm` links, or the `Host` type in its
+# `add_to_linker` signature belongs to a different crate than the `Linker` here
+# and the harness does not compile.
+wasmi = "1.1"
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Timings only. Every count in this harness is deterministic and comes from the
+# instrumented path, not from here; Criterion exists because the hand-rolled
+# sampler could price a crossing but could not say whether the per-byte cost was
+# genuinely below the noise floor or merely below its own resolution. Confidence
+# intervals answer that, and nothing else in the report changes.
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "boundary"
+harness = false
+
+# Copied from `ps-blitz/Cargo.toml`. A `[patch]` applies only to the workspace
+# that declares it, so path-depending on those crates from here does not inherit
+# it: without this line `ps-blitz-dom` resolves crates.io usvg, which has no
+# `intrinsic_dimensions`, and the engine does not compile.
+#
+# It has to stay in step with ps-blitz's own patch table. If that repo repins
+# usvg and this does not, the harness measures an engine built against a
+# different dependency graph than the engine itself is built against, which is a
+# difference nothing in the report would show.
+[patch.crates-io]
+usvg = { git = "https://github.com/DioxusLabs/resvg", rev = "3289a9b0c3d3352692bf5acdf5f6e6949cdb57b5" }
+
+# Optimise the dependencies even in a debug build, leaving this crate
+# unoptimised and debuggable.
+#
+# Without this, a plain `cargo run` runs Boa, wasmi and the whole engine
+# unoptimised, and the 10,000-row setup that `partial-update` repeats 27 times
+# turns a two-minute run into a very long one. The workload is fixed and large;
+# the harness around it is not where the time goes.
+#
+# Counts are unaffected either way, which is the point of counting. The profile
+# is recorded in every report so a timing from a debug build cannot be mistaken
+# for a release one.
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+debug = true
+
+[profile.bench]
+debug = true
